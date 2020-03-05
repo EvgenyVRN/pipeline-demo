@@ -1,5 +1,6 @@
 #include "src/Pipeline.h"
 #include "src/PlusSolver.h"
+#include "src/MinusSolver.h"
 
 #include <gtest/gtest.h>
 
@@ -32,6 +33,29 @@ TEST(Pipeline, PlusSolver)
     auto res = pipeline.Solve(data);
 
     vector<double> expected = {2, 3, 4, 5, 6};
+    EXPECT_EQ(expected, res);
+}
+
+TEST(Pipeline, MinusSolver)
+{
+    Pipeline pipeline;
+    pipeline.AddSolver(make_unique<MinusSolver>());
+    vector<double> data = {1, 2, 3, 4, 5};
+    auto res = pipeline.Solve(data);
+
+    vector<double> expected = {-1, 0, 1, 2, 3};
+    EXPECT_EQ(expected, res);
+}
+
+TEST(Pipeline, PlusMinusSolver)
+{
+    Pipeline pipeline;
+    pipeline.AddSolver(make_unique<PlusSolver>());
+    pipeline.AddSolver(make_unique<MinusSolver>());
+    vector<double> data = {1, 2, 3, 4, 5};
+    auto res = pipeline.Solve(data);
+
+    vector<double> expected = {0, 1, 2, 3, 4};
     EXPECT_EQ(expected, res);
 }
 

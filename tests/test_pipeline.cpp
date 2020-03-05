@@ -59,6 +59,21 @@ TEST(Pipeline, PlusMinusSolver)
     EXPECT_EQ(expected, res);
 }
 
+TEST(Pipeline, MultiSolver)
+{
+    Pipeline pipeline;
+    auto multisolver = make_unique<Pipeline>();
+    multisolver->AddSolver(make_unique<PlusSolver>());
+    multisolver->AddSolver(make_unique<MinusSolver>());
+    pipeline.AddSolver(move(multisolver));
+    pipeline.AddSolver(make_unique<MinusSolver>());
+    vector<double> data = {1, 2, 3, 4, 5};
+    auto res = pipeline.Solve(data);
+
+    vector<double> expected = {-2, -1, 0, 1, 2};
+    EXPECT_EQ(expected, res);
+}
+
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

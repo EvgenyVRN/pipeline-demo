@@ -9,6 +9,11 @@ cmake_minimum_required(VERSION 3.10)
 
 project(pipeline LANGUAGES CXX)
 
+include_directories(${CMAKE_SOURCE_DIR})
+
+# project options
+option(ENABLE_TESTS "Enable tests" OFF)
+
 # compiler options
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -50,10 +55,16 @@ find_package(glog CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem)
 include_directories(${BOOST_INCLUDE_DIR})
 
-
+#library
+add_subdirectory(src)
 
 #main
 add_executable(pipeline main.cpp)
+target_link_libraries(pipeline PRIVATE pipeline-lib)
 target_link_libraries(pipeline PRIVATE ${Boost_LIBRARIES}) # Boost::filesystem
 target_link_libraries(pipeline PRIVATE glog::glog)
 
+#tests
+if (${ENABLE_TESTS})
+    add_subdirectory(tests)
+endif()

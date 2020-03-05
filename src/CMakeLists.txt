@@ -1,1 +1,7 @@
-add_library(pipeline-lib STATIC pipeline.cpp solver.cpp)
+set(SRC
+      MinusSolver.cpp
+      Pipeline.cpp
+      PlusSolver.cpp
+  )
+
+add_library(pipeline-lib STATIC ${SRC})

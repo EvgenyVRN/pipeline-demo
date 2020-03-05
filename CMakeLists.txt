@@ -40,7 +40,7 @@ if((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Cl
               -Wold-style-cast
               -Woverloaded-virtual
               -Wredundant-decls
-              -Wsign-conversion
+              # -Wsign-conversion # used into glog
               -Wsign-promo
         )
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")

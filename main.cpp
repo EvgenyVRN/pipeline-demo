@@ -1,3 +1,5 @@
+#include "src/Pipeline.h"
+
 #include <iostream>
 
 #include <boost/filesystem.hpp>
@@ -11,12 +13,13 @@ namespace fs = boost::filesystem;
 void InitGlog(const std::string& program)
 {
     // Initialize Google's logging library.
+    auto log_name = fs::path(program).filename().string();
     auto program_path = fs::path(program).remove_filename();
     auto logs_path = program_path.append("/logs/");
     if (!fs::is_directory(logs_path) || !fs::exists(logs_path)) // Check if src folder exists
         fs::create_directory(logs_path); // create src folder
 
-    auto log_name = "pipeline";
+    // auto log_name = "pipeline";
     auto log_filename = logs_path.string() + log_name + ".INFO";
     auto wf_filename = logs_path.string() + log_name + ".WARN";
     auto ef_filename = logs_path.string() + log_name + ".ERR";
@@ -26,9 +29,9 @@ void InitGlog(const std::string& program)
     ::google::SetLogDestination(google::ERROR, ef_filename.c_str());
     ::google::SetLogDestination(google::FATAL, "");
 
-    ::google::SetLogSymlink(google::INFO, log_name);
-    ::google::SetLogSymlink(google::WARNING, log_name);
-    ::google::SetLogSymlink(google::ERROR, log_name);
+    ::google::SetLogSymlink(google::INFO, log_name.c_str());
+    ::google::SetLogSymlink(google::WARNING, log_name.c_str());
+    ::google::SetLogSymlink(google::ERROR, log_name.c_str());
     ::google::SetLogSymlink(google::FATAL, "");
 
     google::InitGoogleLogging(program.c_str());
@@ -42,6 +45,10 @@ int main(int , char** argv)
     LOG(WARNING) << "Start pipeline programm";
     LOG(ERROR) << "Start pipeline programm";
     DLOG(INFO) << "Logging only for debug version";
-    cout << "Hello World" << endl;
+
+    vector<double> data = {1, 2, 3, 4, 5};
+    Pipeline pipeline;
+    auto res = pipeline.Solve(data);
+
     return 0;
 }

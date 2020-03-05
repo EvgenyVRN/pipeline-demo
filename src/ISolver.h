@@ -6,7 +6,7 @@
 class ISolver
 {
 public:
-    virtual ~ISolver() = 0;
+    virtual ~ISolver() = default;
     virtual std::vector<double> Solve(const std::vector<double>& data) const = 0;
 };
 

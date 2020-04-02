@@ -46,9 +46,9 @@ int main(int , char** argv)
     LOG(ERROR) << "Start pipeline programm";
     DLOG(INFO) << "Logging only for debug version";
 
-    vector<double> data = {1, 2, 3, 4, 5};
-    Pipeline pipeline;
-    auto res = pipeline.Solve(data);
+//    vector<double> data = {1, 2, 3, 4, 5};
+//    Pipeline pipeline;
+//    auto res = pipeline.Solve(data);
 
     return 0;
 }

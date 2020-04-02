@@ -19,6 +19,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Qt options
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
 if((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Clang"))
         add_compile_options(
               -Werror
@@ -55,14 +60,13 @@ find_package(glog CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem)
 include_directories(${BOOST_INCLUDE_DIR})
 
-#library
-add_subdirectory(src)
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
-#main
-add_executable(pipeline main.cpp)
-target_link_libraries(pipeline PRIVATE pipeline-lib)
-target_link_libraries(pipeline PRIVATE ${Boost_LIBRARIES}) # Boost::filesystem
-target_link_libraries(pipeline PRIVATE glog::glog)
+# project
+add_subdirectory(src)
+add_subdirectory(core)
+add_subdirectory(logic)
+add_subdirectory(app)
 
 #tests
 if (${ENABLE_TESTS})

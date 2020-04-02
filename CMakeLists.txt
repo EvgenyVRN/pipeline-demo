@@ -66,6 +66,7 @@ find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 add_subdirectory(src)
 add_subdirectory(core)
 add_subdirectory(logic)
+add_subdirectory(gui)
 add_subdirectory(app)
 
 #tests

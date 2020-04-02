@@ -1,4 +1,6 @@
 set(SRC
+      ConnectionItem.cpp
+      NodeItem.cpp
       PipelineScene.cpp
     )
 

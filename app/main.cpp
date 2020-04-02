@@ -13,6 +13,8 @@
 #include <QMainWindow>
 
 // maverick project
+#include "gui/ConnectionItem.h"
+#include "gui/NodeItem.h"
 #include "gui/PipelineScene.h"
 
 using namespace std;
@@ -56,9 +58,22 @@ int main(int argc, char** argv)
   DLOG(INFO) << "Logging only for debug version";
 
   QScopedPointer<QApplication> app(new QApplication(argc, argv));
+  // TODO: reaplace scene and view into PipelineWidget
   PipelineScene scene;
+  // TODO: remove this
   scene.addText("Hello, world!");
-
+  NodeItem* nodeItem = new NodeItem;
+  nodeItem->setPos(0, 0);
+  nodeItem->setRect(0, 0, 50, 100);
+  scene.addItem(nodeItem);
+  NodeItem* nodeItem2 = new NodeItem;
+  nodeItem2->setPos(100, 0);
+  nodeItem2->setRect(0, 0, 50, 100);
+  scene.addItem(nodeItem2);
+  ConnectionItem* connectionItem = new ConnectionItem;
+  connectionItem->setLine(50, 50, 100, 50);
+  scene.addItem(connectionItem);
+  //
   QGraphicsView view(&scene);
   view.show();
 

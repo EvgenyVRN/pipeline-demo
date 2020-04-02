@@ -60,7 +60,7 @@ find_package(glog CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem)
 include_directories(${BOOST_INCLUDE_DIR})
 
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets OpenGL REQUIRED)
 
 # project
 add_subdirectory(src)

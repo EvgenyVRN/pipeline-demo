@@ -5,4 +5,4 @@ target_link_libraries(pipeline PRIVATE pipeline-gui
                                         pipeline-core
                                         ${Boost_LIBRARIES} # Boost::filesystem
                                         glog::glog
-                                        Qt5::Core Qt5::Widgets)
+                                        Qt5::Core Qt5::Widgets Qt5::OpenGL)

@@ -1,4 +1,6 @@
 set(SRC
+      NodeFactory.cpp
+      NodeFactorySingleton.cpp
       Pipeline.cpp
     )
 

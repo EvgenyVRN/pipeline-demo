@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "core/INode.h"
+#include "core/IPipeline.h"
 #include "core/NodeImpl.h"
 #include "core/NodeInfo.h"
 
@@ -15,13 +16,13 @@ namespace logic
 
 using namespace maverick::core;
 
-class Pipeline
+class Pipeline : public IPipeline
 {
 public:
   Pipeline();
-  ~Pipeline() = default;
-  void AddNode(std::unique_ptr<INode> node);
-  bool AddConnection(NodeInfo from, NodeInfo to);
+  ~Pipeline() override = default;
+  void AddNode(std::unique_ptr<INode> node) override;
+  bool AddConnection(NodeInfo from, NodeInfo to) override;
   void Apply();
 
 private:

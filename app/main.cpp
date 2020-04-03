@@ -1,4 +1,3 @@
-#include "src/Pipeline.h"
 // stl
 #include <iostream>
 // boost
@@ -12,6 +11,8 @@
 
 // maverick project
 #include "gui/PipelineWidget.h"
+#include "logic/NodeFactorySingleton.h"
+#include "logic/Pipeline.h"
 
 using namespace std;
 namespace fs = boost::filesystem;
@@ -46,6 +47,7 @@ void InitGlog(const std::string& program)
 int main(int argc, char** argv)
 {
   using namespace maverick::gui;
+  using namespace maverick::logic;
   InitGlog(argv[0]);
 
   LOG(INFO) << "Start pipeline programm";
@@ -54,7 +56,12 @@ int main(int argc, char** argv)
   DLOG(INFO) << "Logging only for debug version";
 
   QScopedPointer<QApplication> app(new QApplication(argc, argv));
-  PipelineWidget w;
+  Pipeline pipeline;
+  auto& nodeFactory = NodeFactorySingleton::Instance();
+  LOG(INFO) << "all nodes names";
+  for (auto name : nodeFactory.GetAllNodeNames())
+    LOG(INFO) << name;
+  PipelineWidget w(pipeline);
   w.show();
 
   return app->exec();

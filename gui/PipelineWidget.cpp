@@ -6,14 +6,18 @@
 #include <QGridLayout>
 
 // maverick project
+#include "core/IPipeline.h"
+
 #include "gui/ConnectionItem.h"
 #include "gui/NodeItem.h"
 #include "gui/PipelineScene.h"
 
 using namespace maverick::gui;
 
-PipelineWidget::PipelineWidget(QWidget* parent, Qt::WindowFlags f)
+PipelineWidget::PipelineWidget(
+  maverick::core::IPipeline& pipeline, QWidget* parent, Qt::WindowFlags f)
   : QWidget(parent, f)
+  , m_pipeline(pipeline)
   , m_scene(new PipelineScene(this))
   , m_view(new QGraphicsView(m_scene, this))
 {

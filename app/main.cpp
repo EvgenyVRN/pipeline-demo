@@ -61,7 +61,7 @@ int main(int argc, char** argv)
   LOG(INFO) << "all nodes names";
   for (auto name : nodeFactory.GetAllNodeNames())
     LOG(INFO) << name;
-  PipelineWidget w(pipeline);
+  PipelineWidget w(pipeline, nodeFactory);
   w.show();
 
   return app->exec();

@@ -13,11 +13,13 @@
 #include "gui/PipelineScene.h"
 
 using namespace maverick::gui;
+using namespace maverick::core;
 
 PipelineWidget::PipelineWidget(
-  maverick::core::IPipeline& pipeline, QWidget* parent, Qt::WindowFlags f)
+  IPipeline& pipeline, INodeFactory& factory, QWidget* parent, Qt::WindowFlags f)
   : QWidget(parent, f)
   , m_pipeline(pipeline)
+  , m_factory(factory)
   , m_scene(new PipelineScene(this))
   , m_view(new QGraphicsView(m_scene, this))
 {

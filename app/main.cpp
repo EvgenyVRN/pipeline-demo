@@ -14,6 +14,8 @@
 #include "logic/NodeFactorySingleton.h"
 #include "logic/Pipeline.h"
 
+// #include "logic/nodes/SimpleDataGenerator.h"
+
 using namespace std;
 namespace fs = boost::filesystem;
 

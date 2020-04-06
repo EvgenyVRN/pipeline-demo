@@ -18,7 +18,7 @@ public:
   INode();
   virtual ~INode() = default;
   virtual void SetInput(MaverickData data, uint port = 0) = 0;
-  virtual MaverickData GetOutput(uint poty = 0) = 0;
+  virtual MaverickData GetOutput(uint port = 0) = 0;
 
   uint GetInputPortsCount() const;
   uint GetOutputPortsCount() const;
